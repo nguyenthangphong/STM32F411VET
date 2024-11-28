@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "DEBUG STM32F411VET WITH OPENOCD",
+            "cwd": "${workspaceFolder}",
+            "executable": "./build/STM32F411VET.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32F411E",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "svdFile": "STM32F411.svd",
+            "runToEntryPoint": "main",
+            "searchDir": [],
+            "showDevDebugOutput": "none"
+        }
+    ]
+}
