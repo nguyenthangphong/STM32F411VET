@@ -45,10 +45,10 @@ SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 
 /* USER CODE BEGIN PV */
-uint8_t Tx_Master[] = "Master2Slave\r\n";
-uint8_t Rx_Slave[] = {0};
-uint8_t Rx_buffer_Slave[15] = {0};
-uint8_t indexBuffSlave = 0;
+uint8_t tx_buffer[] = "Hello, SPI\n";
+uint8_t rx_buffer[] = {0};
+uint8_t buffer[11] = {0};
+uint8_t i = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,9 +67,9 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
   UNUSED(hspi);
   if (hspi->Instance == SPI2)
   {
-    HAL_SPI_Receive_IT(&hspi2, Rx_Slave, 1);
-    Rx_buffer_Slave[indexBuffSlave++] = Rx_Slave[0];
-    if (Rx_Slave[0] == '\n') indexBuffSlave = 0;
+    HAL_SPI_Receive_IT(&hspi2, rx_buffer, 1);
+    buffer[i++] = rx_buffer[0];
+    if (rx_buffer[0] == '\n') i = 0;
   }
 }
 /* USER CODE END 0 */
@@ -106,8 +106,8 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_SPI_Receive_IT(&hspi2, Rx_Slave, 1);
-  HAL_SPI_Transmit(&hspi1, Tx_Master, strlen(Tx_Master), 1000);
+  HAL_SPI_Receive_IT(&hspi2, rx_buffer, 1);
+  HAL_SPI_Transmit(&hspi1, tx_buffer, strlen(tx_buffer), 1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
