@@ -189,7 +189,11 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
+ifeq ($(OS),Windows_NT)
+	rmdir /s /q $(BUILD_DIR)
+else
 	-rm -fR $(BUILD_DIR)
+endif
 
 #######################################
 # openocd
