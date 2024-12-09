@@ -12,6 +12,7 @@
                 "STM32F411xE"
             ],
             "intelliSenseMode": "gcc-arm",
+            "compilerPath": "C:/Tools/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
             "compilerArgs": [
                 "-mcpu=cortex-m4",
                 "-mthumb"
